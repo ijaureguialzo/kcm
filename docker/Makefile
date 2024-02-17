@@ -28,17 +28,17 @@ _urls: _header
 	${info }
 	@echo Sitios disponibles:
 	@echo ------------------------------------------------------
-	@echo [Sitio web] https://plantilla-laravel.test
-	@echo [phpMyAdmin] https://phpmyadmin.plantilla-laravel.test
+	@echo [Sitio web] https://kbm.test
+	@echo [phpMyAdmin] https://phpmyadmin.kbm.test
 	@echo ------------------------------------------------------
 
 _urls-dev: _header
 	${info }
 	@echo Sitios disponibles:
 	@echo --------------------------------------------------------
-	@echo [Sitio web] https://plantilla-laravel.test
-	@echo [phpMyAdmin] https://phpmyadmin.plantilla-laravel.test
-	@echo [MailCatcher] https://mailcatcher.plantilla-laravel.test
+	@echo [Sitio web] https://kbm.test
+	@echo [phpMyAdmin] https://phpmyadmin.kbm.test
+	@echo [MailCatcher] https://mailcatcher.kbm.test
 	@echo --------------------------------------------------------
 
 _header:

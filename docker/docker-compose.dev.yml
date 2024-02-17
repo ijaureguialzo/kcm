@@ -3,13 +3,13 @@ services:
   https-portal:
     environment:
       DOMAINS: >
-        mailcatcher.plantilla-laravel.test -> http://mailcatcher:1080,
+        mailcatcher.kbm.test -> http://mailcatcher:1080,
         ${HTTPS_PORTAL_SITES}
     depends_on:
       - mailcatcher
 
   php:
-    image: plantilla-laravel-php-dev
+    image: kbm-php-dev
     build:
       dockerfile: Dockerfile.php.dev
 
