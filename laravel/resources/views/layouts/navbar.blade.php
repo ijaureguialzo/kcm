@@ -17,21 +17,6 @@
         <ul class="navbar-nav me-auto"></ul>
         <ul class="navbar-nav ms-auto">
             @auth
-                @can('user-list')
-                    <li><a class="nav-link {{ $debug_text_color }}"
-                           href="{{ route('users.index') }}">{{ __('Users') }}</a></li>
-                @endcan
-                @can('role-list')
-                    <li><a class="nav-link {{ $debug_text_color }}"
-                           href="{{ route('roles.index') }}">{{ __('Roles') }}</a></li>
-                @endcan
-                @can('permission-list')
-                    <li><a class="nav-link {{ $debug_text_color }}"
-                           href="{{ route('permissions.index') }}">{{ __('Permissions') }}</a></li>
-                @endcan
-                @canany(['user-list', 'role-list', 'permission-list'])
-                    @include('layouts.navbar.navbar-separator')
-                @endcanany
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown"
                        class="nav-link dropdown-toggle {{ $debug_text_color }}" href="#"
