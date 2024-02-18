@@ -10,8 +10,7 @@
         <table class="table table-hover">
             <thead>
             <tr class="table-dark">
-                <th>{{ __('Title') }}</th>
-                <th>{{ __('Description') }}</th>
+                <th>{{ __('Item') }}</th>
                 <th>{{ __('Link') }}</th>
                 <th>{{ __('Actions') }}</th>
             </tr>
@@ -19,10 +18,19 @@
             <tbody class="align-middle">
             @foreach ($rss->get_items() as $item)
                 <tr>
-                    <td>{{ $item->get_title() }}</td>
-                    <td>{{ $item->get_description() }}</td>
                     <td>
-                        <a class="link-primary link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ $item->get_link() }}">{{ __('Click here') }}</a>
+                        <div>
+                            <p class="fw-bold small m-0">{{ $item->get_title() }}</p>
+                            <p class="small m-0">{{ $item->get_description() }}</p>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="{{ $item->get_link() }}"
+                           target="_blank"
+                           title="{{ __('View original entry') }}"
+                           class="btn btn-sm btn-secondary me-2" role="button">
+                            <i class="bi bi-link"></i>
+                        </a>
                     </td>
                     <td>
                         <a href="#"
