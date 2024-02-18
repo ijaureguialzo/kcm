@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditorController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -37,5 +38,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::resource('permissions', PermissionController::class)->except(['show']);
 
         Route::resource('feeds', FeedController::class)->except(['show']);
+
+        Route::get('/editor', [EditorController::class, 'index'])
+            ->name('editor.index');
     });
 });

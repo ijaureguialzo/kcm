@@ -7,6 +7,11 @@
     'icon' => 'bi-house',
 ])
 @include('layouts.sidebar.nav-item', [
+    'route' => route('editor.index'),
+    'text' => __('Desktop'),
+    'icon' => 'bi-newspaper',
+])
+@include('layouts.sidebar.nav-item', [
     'route' => route('feeds.index'),
     'text' => __('My feeds'),
     'icon' => 'bi-rss',
