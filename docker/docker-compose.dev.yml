@@ -4,6 +4,7 @@ services:
     environment:
       DOMAINS: >
         mailcatcher.kbm.test -> http://mailcatcher:1080,
+        phpredisadmin.kbm.test -> http://phpredisadmin:80,
         ${HTTPS_PORTAL_SITES}
     depends_on:
       - mailcatcher
@@ -20,3 +21,14 @@ services:
 
   mailcatcher:
     image: stpaquet/alpinemailcatcher:${MAILCATCHER_VERSION:-latest}
+
+  phpredisadmin:
+    image: erikdubbelboer/phpredisadmin:${PHPREDISADMIN_VERSION:-latest}
+    environment:
+      - REDIS_1_HOST=redis
+      - REDIS_1_NAME=kbm
+      - REDIS_1_PORT=6379
+    expose:
+      - 80
+    depends_on:
+      - redis

@@ -39,6 +39,7 @@ _urls-dev: _header
 	@echo [Sitio web] https://kbm.test
 	@echo [phpMyAdmin] https://phpmyadmin.kbm.test
 	@echo [MailCatcher] https://mailcatcher.kbm.test
+	@echo [phpRedisAdmin] https://phpredisadmin.kbm.test
 	@echo --------------------------------------------------------
 
 _header:
