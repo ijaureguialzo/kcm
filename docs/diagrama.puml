@@ -1,0 +1,65 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide empty members
+
+class Feed {
+- title: string
+- url: string
+- last_refreshed: datetime
+- refresh_interval: integer = 60
+}
+
+class Item {
+- unique_id: string
+- title: text
+- description: text
+- content: text
+- link: url
+- published: datetime
+}
+
+Feed "1" -- "*" Item
+
+class User {
+- name: string
+- email: string
+}
+
+class Role {
+- name: string
+}
+
+class Permission {
+- name: string
+}
+
+User "1" -- "*" Feed
+User "*" -- "*" Role
+Role "*" -- "*" Permission
+
+class Repository {
+- title: string
+- description: text
+- public: boolean = false
+}
+
+class Update {
+- title: string
+- published: datetime
+}
+
+class Post {
+- title: text
+- description: text
+- content: text
+- link: url
+- published: datetime
+}
+
+User "1" -- "*" Repository : manages
+User "*" -- "*" Repository : subscribes
+Repository "1" -- "*" Update
+Update "1" -- "*" Post
+
+
+@enduml
