@@ -1,3 +1,4 @@
+@hasrole('editor')
 @include('layouts.sidebar.nav-title', [
     'text' => __('Editor'),
 ])
@@ -11,8 +12,11 @@
     'text' => __('Desktop'),
     'icon' => 'bi-newspaper',
 ])
-@include('layouts.sidebar.nav-item', [
-    'route' => route('feeds.index'),
-    'text' => __('My feeds'),
-    'icon' => 'bi-rss',
-])
+@can('feed-list')
+    @include('layouts.sidebar.nav-item', [
+        'route' => route('feeds.index'),
+        'text' => __('My feeds'),
+        'icon' => 'bi-rss',
+    ])
+@endcan
+@endhasrole
