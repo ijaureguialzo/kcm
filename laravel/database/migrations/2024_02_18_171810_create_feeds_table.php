@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('url');
             $table->dateTimeTz('last_refreshed')->nullable();
             $table->integer('refresh_interval')->nullable();
+            $table->boolean('public')->nullable();
 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
 

@@ -10,7 +10,7 @@ class Feed extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'url', 'last_refreshed', 'refresh_interval', 'user_id',
+        'title', 'url', 'last_refreshed', 'refresh_interval', 'public', 'user_id',
     ];
 
     protected $casts = [
