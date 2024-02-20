@@ -12,6 +12,11 @@
     'text' => __('Desktop'),
     'icon' => 'bi-newspaper',
 ])
+@include('layouts.sidebar.nav-item', [
+    'route' => route('editor.refresh'),
+    'text' => __('Refresh'),
+    'icon' => 'bi-arrow-clockwise',
+])
 @can('feed-list')
     @include('layouts.sidebar.nav-item', [
         'route' => route('feeds.index'),

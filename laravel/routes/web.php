@@ -41,5 +41,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::get('/editor', [EditorController::class, 'index'])
             ->name('editor.index');
+
+        Route::get('/editor/refresh', [EditorController::class, 'refresh'])
+            ->name('editor.refresh');
     });
 });

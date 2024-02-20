@@ -15,17 +15,17 @@
             </tr>
             </thead>
             <tbody class="align-middle table-group-divider">
-            @foreach ($rss->get_items() as $item)
+            @foreach ($items as $item)
                 <tr>
                     <td>
                         <div>
-                            <p class="fw-bold small m-0">{{ Str::of($item->get_title())->stripTags()->limit(255) }}</p>
-                            <p class="small m-0">{{ Str::of($item->get_description())->stripTags()->limit(255) }}</p>
+                            <p class="fw-bold small m-0">{{ $item->title }}</p>
+                            <p class="small m-0">{{ $item->description }}</p>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ $item->get_link() }}"
+                            <a href="{{ $item->url }}"
                                target="_blank"
                                title="{{ __('View original entry') }}"
                                class="btn btn-sm btn-secondary me-2" role="button">
@@ -43,16 +43,14 @@
             </tbody>
             <tfoot class="table-group-divider">
             <tr>
-                <th colspan="5" class="border-0">{{ __('Total') }}: {{ count($rss->get_items()) }}</th>
+                <th colspan="5" class="border-0">{{ __('Total') }}: {{ $items->count() }}</th>
             </tr>
             </tfoot>
         </table>
     </div>
 
-    {{--
-        <div class="d-flex justify-content-center">
-            {!! $users->links() !!}
-        </div>
-    --}}
+    <div class="d-flex justify-content-center">
+        {!! $items->links() !!}
+    </div>
 
 @endsection

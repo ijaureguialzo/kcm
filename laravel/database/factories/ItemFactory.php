@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Feed;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Feed>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Item>
  */
-class FeedFactory extends Factory
+class ItemFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +19,12 @@ class FeedFactory extends Factory
     {
         return [
             'title' => fake()->words(),
+            'description' => fake()->text(),
+            'content' => fake()->text(),
             'url' => fake()->url(),
-            'user_id' => User::factory()->create()
+            'uid' => fake()->uuid(),
+            'published' => now(),
+            'feed_id' => Feed::factory()->create(),
         ];
     }
 }
