@@ -3,10 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\SafeExam;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +17,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(EditorRoleSeeder::class);
         $this->call(EditorUserSeeder::class);
+
+        $this->call(SubscriberRoleSeeder::class);
+
+        $this->call(RepositorySeeder::class);
     }
 }
