@@ -10,11 +10,11 @@ class Feed {
 }
 
 class Item {
-- unique_id: string
 - title: text
 - description: text
 - content: text
-- link: url
+- url: string
+- uid: string
 - published: datetime
 }
 
