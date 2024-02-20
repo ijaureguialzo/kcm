@@ -49,4 +49,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Feed::class);
     }
+
+    public function owned_repositories()
+    {
+        return $this->hasMany(Repository::class);
+    }
+
+    public function subscribed_repositories()
+    {
+        return $this
+            ->belongsToMany(Repository::class)
+            ->withTimestamps()
+            ->withPivot([
+                'role_id',
+            ]);
+    }
 }
