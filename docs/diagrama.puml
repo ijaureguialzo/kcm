@@ -7,13 +7,14 @@ class Feed {
 - url: string
 - last_refreshed: datetime
 - refresh_interval: integer = 60
+- public: boolean = false
 }
 
 class Item {
 - title: text
 - description: text
 - content: text
-- url: string
+- url: text
 - uid: string
 - published: datetime
 }
@@ -45,7 +46,6 @@ class Repository {
 
 class Update {
 - title: string
-- published: datetime
 }
 
 class Post {
@@ -53,11 +53,17 @@ class Post {
 - description: text
 - content: text
 - link: url
-- published: datetime
 }
 
-User "1" -- "*" Repository : manages
-User "*" -- "*" Repository : subscribes
+User "1" -- "*" Repository : owns
+User "*" -- "*" Repository
+(User,Repository) . repository_user: subscribes
+
+class repository_user {
+- subscribed: datetime
+- role: Role = null
+}
+
 Repository "1" -- "*" Update
 Update "1" -- "*" Post
 
