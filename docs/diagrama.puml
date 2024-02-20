@@ -1,5 +1,6 @@
 @startuml
 skinparam classAttributeIconSize 0
+hide circle
 hide empty members
 
 class Feed {
@@ -44,15 +45,16 @@ class Repository {
 - public: boolean = false
 }
 
-class Update {
+class Compilation {
 - title: string
+- published: datetime
 }
 
 class Post {
 - title: text
 - description: text
 - content: text
-- link: url
+- url: text
 }
 
 User "1" -- "*" Repository : owns
@@ -60,12 +62,11 @@ User "*" -- "*" Repository
 (User,Repository) . repository_user: subscribes
 
 class repository_user {
-- subscribed: datetime
-- role: Role = null
+- role_id: Role = null
 }
 
-Repository "1" -- "*" Update
-Update "1" -- "*" Post
+Repository "1" -- "*" Compilation
+Compilation "1" -- "*" Post
 
 
 @enduml
