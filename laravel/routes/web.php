@@ -3,6 +3,7 @@
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -44,5 +45,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::get('/editor/refresh', [EditorController::class, 'refresh'])
             ->name('editor.refresh');
+
+        Route::resource('repositories', RepositoryController::class)->except(['show']);
     });
 });

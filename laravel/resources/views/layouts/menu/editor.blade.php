@@ -24,4 +24,11 @@
         'icon' => 'bi-rss',
     ])
 @endcan
+@can('repository-list')
+    @include('layouts.sidebar.nav-item', [
+        'route' => route('repositories.index'),
+        'text' => __('My repositories'),
+        'icon' => 'bi-archive',
+    ])
+@endcan
 @endhasrole
