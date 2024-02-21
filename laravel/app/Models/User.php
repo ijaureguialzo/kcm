@@ -64,4 +64,9 @@ class User extends Authenticatable implements MustVerifyEmail
                 'role_id',
             ]);
     }
+
+    public function compilations()
+    {
+        return $this->hasManyThrough(Compilation::class, Repository::class);
+    }
 }

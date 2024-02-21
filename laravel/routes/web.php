@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompilationController;
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PermissionController;
@@ -47,5 +48,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             ->name('editor.refresh');
 
         Route::resource('repositories', RepositoryController::class)->except(['show']);
+        Route::resource('compilations', CompilationController::class)->except(['show']);
     });
 });

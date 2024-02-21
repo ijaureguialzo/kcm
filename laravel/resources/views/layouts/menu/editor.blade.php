@@ -32,4 +32,11 @@
         'icon' => 'bi-archive',
     ])
 @endcan
+@can('compilation-list')
+    @include('layouts.sidebar.nav-item', [
+        'route' => route('compilations.index'),
+        'text' => __('My compilations'),
+        'icon' => 'bi-collection',
+    ])
+@endcan
 @endhasrole
