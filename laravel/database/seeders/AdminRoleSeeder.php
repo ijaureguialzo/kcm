@@ -22,7 +22,7 @@ class AdminRoleSeeder extends Seeder
         ];
 
         foreach ($permissions as $p) {
-            $permission = Permission::create(['name' => $p]);
+            $permission = Permission::updateOrCreate(['name' => $p]);
             $permission->assignRole($role);
         }
     }

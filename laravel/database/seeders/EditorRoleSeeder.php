@@ -17,10 +17,11 @@ class EditorRoleSeeder extends Seeder
 
         $permissions = [
             'feed-list', 'feed-create', 'feed-edit', 'feed-delete',
+            'repository-list', 'repository-create', 'repository-edit', 'repository-delete',
         ];
 
         foreach ($permissions as $p) {
-            $permission = Permission::create(['name' => $p]);
+            $permission = Permission::updateOrCreate(['name' => $p]);
             $permission->assignRole($role);
         }
     }
