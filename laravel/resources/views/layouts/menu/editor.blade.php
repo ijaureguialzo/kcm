@@ -24,6 +24,7 @@
         'icon' => 'bi-rss',
     ])
 @endcan
+@include('layouts.sidebar.nav-separator')
 @can('repository-list')
     @include('layouts.sidebar.nav-item', [
         'route' => route('repositories.index'),
