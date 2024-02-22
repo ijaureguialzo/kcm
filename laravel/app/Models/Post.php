@@ -14,7 +14,7 @@ class Post extends Model
         'description',
         'content',
         'url',
-        'update_id',
+        'compilation_id',
     ];
 
     public function compilation()

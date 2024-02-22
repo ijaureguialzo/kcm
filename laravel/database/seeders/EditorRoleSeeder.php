@@ -19,6 +19,7 @@ class EditorRoleSeeder extends Seeder
             'feed-list', 'feed-create', 'feed-edit', 'feed-delete',
             'repository-list', 'repository-create', 'repository-edit', 'repository-delete',
             'compilation-list', 'compilation-create', 'compilation-edit', 'compilation-delete',
+            'post-list', 'post-create', 'post-edit', 'post-delete',
         ];
 
         foreach ($permissions as $p) {

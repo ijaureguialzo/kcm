@@ -4,6 +4,7 @@ use App\Http\Controllers\CompilationController;
 use App\Http\Controllers\EditorController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -49,5 +50,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::resource('repositories', RepositoryController::class)->except(['show']);
         Route::resource('compilations', CompilationController::class)->except(['show']);
+        Route::resource('posts', PostController::class)->except(['show']);
     });
 });

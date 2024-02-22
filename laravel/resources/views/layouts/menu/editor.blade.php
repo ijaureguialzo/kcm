@@ -39,4 +39,11 @@
         'icon' => 'bi-collection',
     ])
 @endcan
+@can('post-list')
+    @include('layouts.sidebar.nav-item', [
+        'route' => route('posts.index'),
+        'text' => __('My posts'),
+        'icon' => 'bi-file-post',
+    ])
+@endcan
 @endhasrole
