@@ -15,7 +15,7 @@ class EditorUserSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'Editor',
-            'email' => 'editor@kbm.test',
+            'email' => 'editor@kcm.test',
             'password' => bcrypt('12345Abcde'),
             'email_verified_at' => now(),
         ]);

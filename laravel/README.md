@@ -50,7 +50,7 @@ Código fuente de la aplicación.
     make seed
     ```
 
-8. Acceder a la aplicación en [este enlace](https://kbm.test).
+8. Acceder a la aplicación en [este enlace](https://kcm.test).
 
 ## Paquetes utilizados
 
