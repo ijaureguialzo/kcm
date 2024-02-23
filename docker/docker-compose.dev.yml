@@ -3,14 +3,14 @@ services:
   https-portal:
     environment:
       DOMAINS: >
-        mailcatcher.kbm.test -> http://mailcatcher:1080,
-        phpredisadmin.kbm.test -> http://phpredisadmin:80,
+        mailcatcher.kcm.test -> http://mailcatcher:1080,
+        phpredisadmin.kcm.test -> http://phpredisadmin:80,
         ${HTTPS_PORTAL_SITES}
     depends_on:
       - mailcatcher
 
   php:
-    image: kbm-php-dev
+    image: kcm-php-dev
     build:
       dockerfile: Dockerfile.php.dev
 
@@ -26,7 +26,7 @@ services:
     image: erikdubbelboer/phpredisadmin:${PHPREDISADMIN_VERSION:-latest}
     environment:
       - REDIS_1_HOST=redis
-      - REDIS_1_NAME=kbm
+      - REDIS_1_NAME=kcm
       - REDIS_1_PORT=6379
     expose:
       - 80

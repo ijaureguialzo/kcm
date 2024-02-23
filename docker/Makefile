@@ -28,18 +28,18 @@ _urls: _header
 	${info }
 	@echo Sitios disponibles:
 	@echo ------------------------------------------------------
-	@echo [Sitio web] https://kbm.test
-	@echo [phpMyAdmin] https://phpmyadmin.kbm.test
+	@echo [Sitio web] https://kcm.test
+	@echo [phpMyAdmin] https://phpmyadmin.kcm.test
 	@echo ------------------------------------------------------
 
 _urls-dev: _header
 	${info }
 	@echo Sitios disponibles:
 	@echo --------------------------------------------------------
-	@echo [Sitio web] https://kbm.test
-	@echo [phpMyAdmin] https://phpmyadmin.kbm.test
-	@echo [MailCatcher] https://mailcatcher.kbm.test
-	@echo [phpRedisAdmin] https://phpredisadmin.kbm.test
+	@echo [Sitio web] https://kcm.test
+	@echo [phpMyAdmin] https://phpmyadmin.kcm.test
+	@echo [MailCatcher] https://mailcatcher.kcm.test
+	@echo [phpRedisAdmin] https://phpredisadmin.kcm.test
 	@echo --------------------------------------------------------
 
 _header:
