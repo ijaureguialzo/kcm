@@ -90,6 +90,9 @@ RUN apk add --update --no-cache bash nano
 
 RUN docker-php-ext-install bcmath && docker-php-ext-enable bcmath
 
+# Laravel cron
+RUN echo '* * * * * su www-data -s /bin/bash -c "/var/www/html/laravel/artisan schedule:run" >> /dev/null 2>&1' >> /etc/crontabs/root
+
 # Add UID '1000' to www-data
 RUN usermod -u 1000 www-data
 
