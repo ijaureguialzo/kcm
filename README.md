@@ -1,3 +1,3 @@
-# KBM
+# KCM
 
-Knowledge Bucket Manager.
+Knowledge Compilation Manager.
