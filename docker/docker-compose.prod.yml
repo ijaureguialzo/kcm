@@ -14,6 +14,9 @@ services:
   php:
     restart: unless-stopped
 
+  cron:
+    restart: unless-stopped
+
   phpmyadmin:
     restart: unless-stopped
 

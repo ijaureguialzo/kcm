@@ -69,6 +69,23 @@ services:
       - mariadb
       - redis
 
+  cron:
+    hostname: cron
+    build:
+      context: .
+      dockerfile: Dockerfile.php.prod
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+        - ALPINE_VERSION=${ALPINE_VERSION}
+    command: "crond -f"
+    user: "root:root"
+    volumes:
+      - ../laravel:/var/www/html/laravel:ro
+      - ../laravel/storage/logs/:/var/www/html/laravel/storage/logs
+    depends_on:
+      - mariadb
+      - redis
+
   phpmyadmin:
     image: phpmyadmin:${PHPMYADMIN_VERSION}
     environment:
