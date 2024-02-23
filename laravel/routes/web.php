@@ -45,9 +45,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/editor', [EditorController::class, 'index'])
             ->name('editor.index');
 
-        Route::get('/editor/refresh', [EditorController::class, 'refresh'])
-            ->name('editor.refresh');
-
         Route::resource('repositories', RepositoryController::class)->except(['show']);
         Route::resource('compilations', CompilationController::class)->except(['show']);
         Route::resource('posts', PostController::class)->except(['show']);
