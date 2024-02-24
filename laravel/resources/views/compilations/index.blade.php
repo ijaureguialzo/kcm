@@ -33,18 +33,21 @@
                     <td>{{ $compilation->id }}</td>
                     <td>{{ $compilation->repository->title }}</td>
                     <td>{{ $compilation->title }}</td>
-                    <td>{{ $compilation->published }}</td>
+                    <td>{{ $compilation->published ?: __('No') }}</td>
                     <td>
                         <div class="d-flex">
-                            <form action="{{ route('compilations.selection.add', [$compilation->id]) }}" method="POST">
-                                @csrf
-                                <button title="{{ __('Add to selected compilations') }}"
-                                        name="add-compilation"
-                                        type="submit"
-                                        class="btn btn-sm btn-primary me-2">
-                                    <i class="bi bi-plus-lg"></i>
-                                </button>
-                            </form>
+                            @empty($compilation->published)
+                                <form action="{{ route('compilations.selection.add', [$compilation->id]) }}"
+                                      method="POST">
+                                    @csrf
+                                    <button title="{{ __('Add to selected compilations') }}"
+                                            name="add-compilation"
+                                            type="submit"
+                                            class="btn btn-sm btn-primary me-2">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </form>
+                            @endempty
                             @can('compilation-edit')
                                 <a href="{{ route('compilations.edit', [$compilation->id]) }}"
                                    title="{{ __('Edit') }}"
