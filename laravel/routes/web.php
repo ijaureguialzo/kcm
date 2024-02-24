@@ -48,5 +48,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::resource('repositories', RepositoryController::class)->except(['show']);
         Route::resource('compilations', CompilationController::class)->except(['show']);
         Route::resource('posts', PostController::class)->except(['show']);
+
+        Route::post('/compilations/{compilation}/selection_add', [CompilationController::class, 'selection_add'])
+            ->name('compilations.selection.add');
+        Route::post('/compilations/{compilation}/selection_remove', [CompilationController::class, 'selection_remove'])
+            ->name('compilations.selection.remove');
+        Route::post('/compilations/selection_clear', [CompilationController::class, 'selection_clear'])
+            ->name('compilations.selection.clear');
+
     });
 });

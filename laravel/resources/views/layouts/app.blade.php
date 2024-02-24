@@ -14,6 +14,9 @@
 <main class="row flex-grow-1 m-0">
     @include('layouts.sidebar')
     <div class="p-4 col-12 col-sm-10">
+        @hasrole('editor')
+        @include('editor.selection-bar')
+        @endhasrole
         @yield('content')
     </div>
 </main>

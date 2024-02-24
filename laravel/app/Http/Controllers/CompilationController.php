@@ -10,7 +10,7 @@ class CompilationController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:compilation-list|compilation-create|compilation-edit|compilation-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:compilation-list', ['only' => ['index']]);
         $this->middleware('permission:compilation-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:compilation-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:compilation-delete', ['only' => ['destroy']]);
@@ -72,6 +72,35 @@ class CompilationController extends Controller
     public function destroy(Compilation $compilation)
     {
         $compilation->delete();
+
+        return back();
+    }
+
+    public function selection_add(Compilation $compilation)
+    {
+        $seleccionadas = session('selected_compilations') ?: [];
+
+        $seleccionadas = array_unique(array_merge($seleccionadas, [$compilation->id]));
+
+        session()->put('selected_compilations', $seleccionadas);
+
+        return back();
+    }
+
+    public function selection_remove(Compilation $compilation)
+    {
+        $seleccionadas = session('selected_compilations') ?: [];
+
+        $seleccionadas = array_diff($seleccionadas, [$compilation->id]);
+
+        session()->put('selected_compilations', $seleccionadas);
+
+        return back();
+    }
+
+    public function selection_clear()
+    {
+        session()->forget('selected_compilations');
 
         return back();
     }
