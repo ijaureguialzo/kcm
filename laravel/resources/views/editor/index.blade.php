@@ -4,7 +4,28 @@
 
     @include('partials.titular', ['titular' => __('Desktop'), 'subtitulo' => ''])
 
-    <h2>{{ $feed->title }}</h2>
+    <form action="{{ route('editor.select_feed') }}"
+          method="POST">
+        <div class="mb-3 d-flex ">
+            @csrf
+            <label class="col-form-label" for="feed_id">{{ __('Feed') }}</label>
+            <select class="form-select mx-3" id="feed_id" name="feed_id">
+                @foreach($feeds as $feed)
+                    <option {{ $feed->id == $current_feed->id ? 'selected' : '' }}
+                            value="{{ $feed->id }}">
+                        {{ $feed->title }}
+                    </option>
+                @endforeach
+            </select>
+            <button name="select-feed"
+                    type="submit"
+                    class="btn btn-primary">
+                {{ __('Select') }}
+            </button>
+        </div>
+    </form>
+
+    <h2>{{ $current_feed->title }}</h2>
 
     <div class="table-responsive">
         <table class="table table-hover">
