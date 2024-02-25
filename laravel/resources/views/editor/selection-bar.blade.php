@@ -4,7 +4,7 @@
         @foreach(session('selected_compilations') as $compilation_id)
             <span
                 class="badge rounded-pill text-bg-secondary me-2 ps-3 pe-2 d-inline-flex align-items-center justify-content-center">
-            {{ \App\Models\Compilation::find($compilation_id)->title }}
+            {{ \App\Models\Compilation::find($compilation_id)?->title }}
             <form action="{{ route('compilations.selection.remove', [$compilation_id]) }}" method="POST">
                 @csrf
                 <button title="{{ __('Remove from selected compilations') }}"

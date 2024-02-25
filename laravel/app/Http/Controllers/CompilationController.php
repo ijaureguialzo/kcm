@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\SessionHelpers;
 use App\Mail\CompilationPublished;
 use App\Models\Compilation;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Mail;
 
 class CompilationController extends Controller
 {
+    use SessionHelpers;
+
     function __construct()
     {
         $this->middleware('permission:compilation-list', ['only' => ['index']]);
@@ -73,6 +76,8 @@ class CompilationController extends Controller
 
     public function destroy(Compilation $compilation)
     {
+        $this->remove_from_session('selected_compilations', $compilation->id);
+
         $compilation->delete();
 
         return back();
@@ -113,23 +118,5 @@ class CompilationController extends Controller
         }
 
         return back();
-    }
-
-    public function add_to_session(string $key, mixed $value): void
-    {
-        $seleccionadas = session($key) ?: [];
-
-        $seleccionadas = array_unique(array_merge($seleccionadas, [$value]));
-
-        session()->put($key, $seleccionadas);
-    }
-
-    public function remove_from_session(string $key, mixed $value): void
-    {
-        $seleccionadas = session($key) ?: [];
-
-        $seleccionadas = array_diff($seleccionadas, [$value]);
-
-        session()->put($key, $seleccionadas);
     }
 }

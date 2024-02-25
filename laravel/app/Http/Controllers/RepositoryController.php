@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\SessionHelpers;
 use App\Models\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RepositoryController extends Controller
 {
+    use SessionHelpers;
+
     function __construct()
     {
         $this->middleware('permission:repository-list|repository-create|repository-edit|repository-delete', ['only' => ['index', 'store']]);
@@ -66,6 +69,10 @@ class RepositoryController extends Controller
 
     public function destroy(Repository $repository)
     {
+        foreach ($repository->compilations()->get() as $compilation) {
+            $this->remove_from_session('selected_compilations', $compilation->id);
+        }
+
         $repository->delete();
 
         return back();
