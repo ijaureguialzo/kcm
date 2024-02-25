@@ -41,11 +41,16 @@
                                     <i class="bi bi-check2"></i>
                                 </button>
                             </form>
-                            <a href="#"
-                               title="{{ __('Add to compilation') }}"
-                               class="btn btn-sm btn-primary me-2" role="button">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
+                            <form action="{{ route('editor.compile_post', [$item->id]) }}"
+                                  method="POST">
+                                @csrf
+                                <button title="{{ __('Add to selected compilations') }}"
+                                        name="compile-post"
+                                        type="submit"
+                                        class="btn btn-sm btn-primary me-2">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
