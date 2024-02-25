@@ -10,32 +10,38 @@
         <table class="table table-hover">
             <thead>
             <tr class="table-dark">
-                <th class="small">{{ __('Item') }}</th>
-                <th class="small">{{ __('Actions') }}</th>
+                <th>{{ __('Item') }}</th>
+                <th>{{ __('Actions') }}</th>
             </tr>
             </thead>
             <tbody class="align-middle table-group-divider">
             @foreach ($items as $item)
                 <tr>
                     <td>
-                        <div>
-                            <p class="fw-bold small m-0">{{ $item->title }}</p>
-                            <p class="small m-0">{{ $item->description }}</p>
-                        </div>
+                        @include('posts.summary', ['data' => $item])
                     </td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ $item->url }}"
-                               target="_blank"
-                               title="{{ __('View original entry') }}"
-                               class="btn btn-sm btn-secondary me-2" role="button">
-                                <i class="bi bi-link"></i>
-                            </a>
-                            <a href="#"
-                               title="{{ __('Add to bucket') }}"
-                               class="btn btn-sm btn-primary me-2" role="button">
-                                <i class="bi bi-plus-lg"></i>
-                            </a>
+                            <form action="{{ route('editor.mark_item_read', [$item->id]) }}"
+                                  method="POST">
+                                @csrf
+                                <button title="{{ __('Mark as read') }}"
+                                        name="mark-read"
+                                        type="submit"
+                                        class="btn btn-sm btn-secondary me-2">
+                                    <i class="bi bi-check2"></i>
+                                </button>
+                            </form>
+                            <form action="{{ route('editor.compile_post', [$item->id]) }}"
+                                  method="POST">
+                                @csrf
+                                <button title="{{ __('Add to selected compilations') }}"
+                                        name="compile-post"
+                                        type="submit"
+                                        class="btn btn-sm btn-primary me-2">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>

@@ -13,12 +13,16 @@ return new class extends Migration {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
 
+            // Datos del RSS
             $table->text('title');
             $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->text('url')->nullable();
             $table->string('uid')->index();
             $table->dateTimeTz('published')->nullable();
+
+            // Datos propios
+            $table->boolean('read')->default(false);
 
             $table->foreignId('feed_id')->constrained()->onDelete('cascade');
 
