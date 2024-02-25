@@ -22,9 +22,9 @@
                 <button title="{{ __('Clear selected compilations') }}"
                         name="clear-compilation"
                         type="submit" onclick="return confirm('{{ __('Are you sure?') }}')"
-                        class="btn btn-link p-0 m-0 fw-bold text-uppercase text-light hover-link"
+                        class="btn btn-link p-0 m-0 fw-bold text-uppercase text-secondary hover-link"
                         style="font-size: .75em;">
-                    {{ __('Clear') }}
+                    {{ __('Clear all') }}
                 </button>
             </form>
         </span>
