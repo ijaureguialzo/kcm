@@ -24,10 +24,7 @@
                 <thead>
                 <tr class="table-dark">
                     <th>#</th>
-                    <th>{{ __('Title') }}</th>
-                    <th>{{ __('Description') }}</th>
-                    <th>{{ __('Content') }}</th>
-                    <th>{{ __('URL') }}</th>
+                    <th>{{ __('Post') }}</th>
                     <th>{{ __('Actions') }}</th>
                 </tr>
                 </thead>
@@ -35,10 +32,9 @@
                 @foreach ($compilation->posts as $post)
                     <tr>
                         <td>{{ $post->id }}</td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->description }}</td>
-                        <td>{{ $post->content }}</td>
-                        <td>{{ $post->url }}</td>
+                        <td>
+                            @include('posts.summary', ['data' => $post])
+                        </td>
                         <td>
                             <div class="d-flex">
                                 @can('post-edit')

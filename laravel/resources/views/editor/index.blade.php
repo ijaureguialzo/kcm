@@ -10,24 +10,15 @@
         <table class="table table-hover">
             <thead>
             <tr class="table-dark">
-                <th class="small">{{ __('Item') }}</th>
-                <th class="small">{{ __('Actions') }}</th>
+                <th>{{ __('Item') }}</th>
+                <th>{{ __('Actions') }}</th>
             </tr>
             </thead>
             <tbody class="align-middle table-group-divider">
             @foreach ($items as $item)
                 <tr>
                     <td>
-                        <div>
-                            <p class="fw-bold small m-0">{{ $item->title }}</p>
-                            <p class="small m-0">{{ $item->description }}</p>
-                            <p class="m-0">
-                                <a class="small m-0 hover-link" href="{{ $item->url }}"
-                                   target="_blank">
-                                    {{ __('View original entry') }}
-                                </a>
-                            </p>
-                        </div>
+                        @include('posts.summary', ['data' => $item])
                     </td>
                     <td>
                         <div class="d-flex">
