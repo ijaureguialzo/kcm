@@ -3,14 +3,12 @@
     'text' => __('Editor'),
 ])
 @include('layouts.sidebar.nav-item', [
-    'route' => route('home'),
-    'text' => __('Home'),
-    'icon' => 'bi-house',
-])
-@include('layouts.sidebar.nav-item', [
     'route' => route('editor.index'),
     'text' => __('Desktop'),
-    'icon' => 'bi-newspaper',
+    'icon' => 'bi-house',
+])
+@include('layouts.sidebar.nav-title', [
+    'text' => __('Feeds'),
 ])
 @can('feed-list')
     @include('layouts.sidebar.nav-item', [
@@ -19,7 +17,9 @@
         'icon' => 'bi-rss',
     ])
 @endcan
-@include('layouts.sidebar.nav-separator')
+@include('layouts.sidebar.nav-title', [
+    'text' => __('Compilations'),
+])
 @can('repository-list')
     @include('layouts.sidebar.nav-item', [
         'route' => route('repositories.index'),

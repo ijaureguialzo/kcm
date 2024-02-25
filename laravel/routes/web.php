@@ -33,6 +33,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::middleware($auth_middlewares)->group(function () {
 
         Route::get('/', function () {
+            $user = Auth::user();
+            if ($user->hasRole('editor')) {
+                return redirect(route('editor.index'));
+            }
+
             return view('welcome');
         })->name('home');
 
