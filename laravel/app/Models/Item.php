@@ -10,7 +10,7 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'content', 'url', 'uid', 'published', 'feed_id',
+        'title', 'description', 'content', 'url', 'uid', 'published', 'read', 'feed_id',
     ];
 
     protected $casts = [
@@ -20,5 +20,15 @@ class Item extends Model
     public function feed()
     {
         return $this->belongsTo(Feed::class);
+    }
+
+    public function scopeRead($query)
+    {
+        return $query->where('read', true);
+    }
+
+    public function scopeUnread($query)
+    {
+        return $query->where('read', false);
     }
 }

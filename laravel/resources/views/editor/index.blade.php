@@ -21,18 +21,28 @@
                         <div>
                             <p class="fw-bold small m-0">{{ $item->title }}</p>
                             <p class="small m-0">{{ $item->description }}</p>
+                            <p class="m-0">
+                                <a class="small m-0 hover-link" href="{{ $item->url }}"
+                                   target="_blank">
+                                    {{ __('View original entry') }}
+                                </a>
+                            </p>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ $item->url }}"
-                               target="_blank"
-                               title="{{ __('View original entry') }}"
-                               class="btn btn-sm btn-secondary me-2" role="button">
-                                <i class="bi bi-link"></i>
-                            </a>
+                            <form action="{{ route('editor.mark_item_read', [$item->id]) }}"
+                                  method="POST">
+                                @csrf
+                                <button title="{{ __('Mark as read') }}"
+                                        name="mark-read"
+                                        type="submit"
+                                        class="btn btn-sm btn-secondary me-2">
+                                    <i class="bi bi-check2"></i>
+                                </button>
+                            </form>
                             <a href="#"
-                               title="{{ __('Add to bucket') }}"
+                               title="{{ __('Add to compilation') }}"
                                class="btn btn-sm btn-primary me-2" role="button">
                                 <i class="bi bi-plus-lg"></i>
                             </a>

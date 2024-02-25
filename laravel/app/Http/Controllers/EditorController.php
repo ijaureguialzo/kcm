@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compilation;
 use App\Models\Item;
-use Carbon\Carbon;
-use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-use Vedmant\FeedReader\Facades\FeedReader;
 
 class EditorController extends Controller
 {
@@ -16,8 +12,21 @@ class EditorController extends Controller
     {
         $feed = Auth::user()->feeds()->firstOrFail();
 
-        $items = $feed->items()->paginate(10);
+        $items = $feed->items()->unread()->paginate(10);
 
         return view('editor.index', compact(['feed', 'items']));
+    }
+
+    public function mark_item_read(Item $item)
+    {
+        $item->read = true;
+        $item->save();
+
+        return back();
+    }
+
+    public function compile_post(Compilation $compilation, Item $item)
+    {
+        return back();
     }
 }
