@@ -55,6 +55,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             ->name('compilations.selection.remove');
         Route::post('/compilations/selection_clear', [CompilationController::class, 'selection_clear'])
             ->name('compilations.selection.clear');
+        Route::post('/compilations/{compilation}/publish', [CompilationController::class, 'publish'])
+            ->name('compilations.publish');
 
         Route::post('/editor/{item}/mark_item_read', [EditorController::class, 'mark_item_read'])
             ->name('editor.mark_item_read');

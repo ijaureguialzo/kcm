@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CompilationPublished;
 use App\Models\Compilation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CompilationController extends Controller
 {
@@ -78,22 +80,14 @@ class CompilationController extends Controller
 
     public function selection_add(Compilation $compilation)
     {
-        $seleccionadas = session('selected_compilations') ?: [];
-
-        $seleccionadas = array_unique(array_merge($seleccionadas, [$compilation->id]));
-
-        session()->put('selected_compilations', $seleccionadas);
+        $this->add_to_session('selected_compilations', $compilation->id);
 
         return back();
     }
 
     public function selection_remove(Compilation $compilation)
     {
-        $seleccionadas = session('selected_compilations') ?: [];
-
-        $seleccionadas = array_diff($seleccionadas, [$compilation->id]);
-
-        session()->put('selected_compilations', $seleccionadas);
+        $this->remove_from_session('selected_compilations', $compilation->id);
 
         return back();
     }
@@ -103,5 +97,39 @@ class CompilationController extends Controller
         session()->forget('selected_compilations');
 
         return back();
+    }
+
+    public function publish(Compilation $compilation)
+    {
+        $compilation->published = now();
+        $compilation->save();
+
+        $this->remove_from_session('selected_compilations', $compilation->id);
+
+        $subscribers = $compilation->repository->subscribers;
+
+        foreach ($subscribers as $recipient) {
+            Mail::to($recipient->email)->send(new CompilationPublished($compilation));
+        }
+
+        return back();
+    }
+
+    public function add_to_session(string $key, mixed $value): void
+    {
+        $seleccionadas = session($key) ?: [];
+
+        $seleccionadas = array_unique(array_merge($seleccionadas, [$value]));
+
+        session()->put($key, $seleccionadas);
+    }
+
+    public function remove_from_session(string $key, mixed $value): void
+    {
+        $seleccionadas = session($key) ?: [];
+
+        $seleccionadas = array_diff($seleccionadas, [$value]);
+
+        session()->put($key, $seleccionadas);
     }
 }

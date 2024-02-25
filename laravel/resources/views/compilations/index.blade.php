@@ -48,6 +48,18 @@
                                     </button>
                                 </form>
                             @endempty
+                            @empty($compilation->published)
+                                <form action="{{ route('compilations.publish', [$compilation->id]) }}"
+                                      method="POST">
+                                    @csrf
+                                    <button title="{{ __('Publish compilation') }}"
+                                            name="publish-compilation"
+                                            type="submit" onclick="return confirm('{{ __('Are you sure?') }}')"
+                                            class="btn btn-sm btn-success me-2">
+                                        <i class="bi bi-send"></i>
+                                    </button>
+                                </form>
+                            @endempty
                             @can('compilation-edit')
                                 <a href="{{ route('compilations.edit', [$compilation->id]) }}"
                                    title="{{ __('Edit') }}"
