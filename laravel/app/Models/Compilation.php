@@ -19,6 +19,12 @@ class Compilation extends Model
         'published' => 'datetime',
     ];
 
+    public function getFullNameAttribute()
+    {
+        return $this->repository->title
+            . ' - ' . $this->title;
+    }
+
     public function repository()
     {
         return $this->belongsTo(Repository::class);

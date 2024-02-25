@@ -86,6 +86,23 @@ services:
       - mariadb
       - redis
 
+  queue:
+    hostname: queue
+    build:
+      context: .
+      dockerfile: Dockerfile.php.prod
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+        - ALPINE_VERSION=${ALPINE_VERSION}
+    command: "php artisan queue:work"
+    user: "root:root"
+    volumes:
+      - ../laravel:/var/www/html/laravel:ro
+      - ../laravel/storage/:/var/www/html/laravel/storage
+    depends_on:
+      - mariadb
+      - redis
+
   phpmyadmin:
     image: phpmyadmin:${PHPMYADMIN_VERSION}
     environment:

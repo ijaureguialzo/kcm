@@ -29,7 +29,7 @@ class CompilationPublished extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->compilation->repository->title . ' - ' . $this->compilation->title,
+            subject: $this->compilation->full_name,
         );
     }
 
