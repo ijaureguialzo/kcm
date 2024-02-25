@@ -55,16 +55,18 @@
                                     </button>
                                 </form>
                                 @session('selected_compilations')
-                                <form action="{{ route('editor.compile_post', [$item->id]) }}"
-                                      method="POST">
-                                    @csrf
-                                    <button title="{{ __('Add to selected compilations') }}"
-                                            name="compile-post"
-                                            type="submit"
-                                            class="btn btn-sm btn-primary me-2">
-                                        <i class="bi bi-plus-lg"></i>
-                                    </button>
-                                </form>
+                                @if(count($value) > 0)
+                                    <form action="{{ route('editor.compile_post', [$item->id]) }}"
+                                          method="POST">
+                                        @csrf
+                                        <button title="{{ __('Add to selected compilations') }}"
+                                                name="compile-post"
+                                                type="submit"
+                                                class="btn btn-sm btn-primary me-2">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
+                                    </form>
+                                @endif
                                 @endsession
                             </div>
                         </td>
