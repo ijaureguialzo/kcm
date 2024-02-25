@@ -53,6 +53,7 @@
                                     <i class="bi bi-check2"></i>
                                 </button>
                             </form>
+                            @session('selected_compilations')
                             <form action="{{ route('editor.compile_post', [$item->id]) }}"
                                   method="POST">
                                 @csrf
@@ -63,6 +64,7 @@
                                     <i class="bi bi-plus-lg"></i>
                                 </button>
                             </form>
+                            @endsession
                         </div>
                     </td>
                 </tr>
