@@ -23,6 +23,7 @@
                 <th>#</th>
                 <th>{{ __('Repository') }}</th>
                 <th>{{ __('Title') }}</th>
+                <th>{{ __('Posts') }}</th>
                 <th>{{ __('Published') }}</th>
                 <th>{{ __('Actions') }}</th>
             </tr>
@@ -33,6 +34,7 @@
                     <td>{{ $compilation->id }}</td>
                     <td>{{ $compilation->repository->title }}</td>
                     <td>{{ $compilation->title }}</td>
+                    <td>{{ $compilation->posts->count() }}</td>
                     <td>{{ $compilation->published ?: __('No') }}</td>
                     <td>
                         <div class="d-flex">
