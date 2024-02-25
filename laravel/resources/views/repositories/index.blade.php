@@ -23,6 +23,7 @@
                 <th>#</th>
                 <th>{{ __('Title') }}</th>
                 <th>{{ __('Description') }}</th>
+                <th>{{ __('Subscribers') }}</th>
                 <th>{{ __('Public') }}</th>
                 <th>{{ __('Actions') }}</th>
             </tr>
@@ -33,6 +34,7 @@
                     <td>{{ $repository->id }}</td>
                     <td>{{ $repository->title }}</td>
                     <td>{{ $repository->description }}</td>
+                    <td>{{ $repository->subscribers->count() }}</td>
                     <td>{{ $repository->public ? __('Yes') : __('No') }}</td>
                     <td>
                         <div class="d-flex">
