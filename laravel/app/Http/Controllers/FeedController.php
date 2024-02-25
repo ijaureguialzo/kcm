@@ -66,6 +66,10 @@ class FeedController extends Controller
 
     public function destroy(Feed $feed)
     {
+        if (session('selected_feed') == $feed->id) {
+            session()->forget('selected_feed');
+        }
+
         $feed->delete();
 
         return back();
