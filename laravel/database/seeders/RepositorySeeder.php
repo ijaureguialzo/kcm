@@ -50,7 +50,7 @@ class RepositorySeeder extends Seeder
         $repository = Repository::create([
             'title' => 'Ciberseguridad',
             'description' => 'Repositorio con noticias sobre ciberseguridad.',
-            'public' => false,
+            'public' => true,
             'user_id' => $editor->id,
         ]);
 
@@ -64,7 +64,7 @@ class RepositorySeeder extends Seeder
         $repository = Repository::create([
             'title' => 'Programación',
             'description' => 'Repositorio con noticias sobre desarrollo de software.',
-            'public' => false,
+            'public' => true,
             'user_id' => $editor->id,
         ]);
     }

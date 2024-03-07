@@ -17,6 +17,8 @@ class SubscriberRoleSeeder extends Seeder
 
         $permissions = [
             'repository-list',
+            'repository-subscribe',
+            'repository-unsubscribe',
         ];
 
         foreach ($permissions as $p) {

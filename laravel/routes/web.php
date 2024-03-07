@@ -70,5 +70,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::post('/editor/select_feed', [EditorController::class, 'select_feed'])
             ->name('editor.select_feed');
 
+        Route::get('/repositories/public', [RepositoryController::class, 'public'])
+            ->name('repositories.public');
+        Route::post('/repositories/{repository}/{user}/subscribe', [RepositoryController::class, 'subscribe'])
+            ->name('repositories.subscribe');
+        Route::post('/repositories/{repository}/{user}/unsubscribe', [RepositoryController::class, 'unsubscribe'])
+            ->name('repositories.unsubscribe');
+
     });
 });

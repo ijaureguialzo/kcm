@@ -9,8 +9,8 @@
 ])
 @can('repository-list')
     @include('layouts.sidebar.nav-item', [
-        'route' => route('repositories.index'),
-        'text' => __('My repositories'),
+        'route' => route('repositories.public'),
+        'text' => __('Repositories'),
         'icon' => 'bi-archive',
     ])
 @endcan
