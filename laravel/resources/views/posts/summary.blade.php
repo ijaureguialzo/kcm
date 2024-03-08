@@ -4,7 +4,7 @@
     <p class="m-0">
         <a class="small m-0 hover-link" href="{{ $data->url }}"
            target="_blank">
-            {{ __('View original entry') }}
+            {{ __('View original source') }}
         </a>
     </p>
 </div>
