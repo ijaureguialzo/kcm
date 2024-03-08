@@ -84,7 +84,8 @@ class RepositoryController extends Controller
     {
         $repositories = Repository::where('public', true)->paginate(10);
         $user = Auth::user();
+        $subscriptions = $user->subscribed_repositories()->get();
 
-        return view('repositories.public', compact(['repositories', 'user']));
+        return view('repositories.public', compact(['repositories', 'user', 'subscriptions']));
     }
 }

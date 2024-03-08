@@ -30,7 +30,7 @@
                     <td>{{ $repository->owner->name }}</td>
                     <td>
                         <div class="d-flex">
-                            @php($subscribed = $user->subscribed_repositories()->get()->contains($repository))
+                            @php($subscribed = $subscriptions->contains($repository))
                             @can('repository-subscribe')
                                 <form action="{{ route('repositories.subscribe', [$repository->id, $user->id]) }}"
                                       method="POST">
