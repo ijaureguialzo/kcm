@@ -21,7 +21,7 @@
                             <p class="card-text small">{{ __('Curated by') }}: {{ $repository->owner->name }}</p>
                         </div>
                         <div class="text-end">
-                            <a href="#"
+                            <a href="{{ route('subscriptions.compilations', $repository->id) }}"
                                class="btn btn-sm btn-primary" role="button">
                                 <i class="bi bi-eye"></i><span class="ms-2">{{ __('View compilations') }}</span>
                             </a>

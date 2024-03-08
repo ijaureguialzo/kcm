@@ -81,6 +81,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             ->name('repositories.unsubscribe');
         Route::get('/subscriptions', [SubscriptionController::class, 'index'])
             ->name('subscriptions.index');
-
+        Route::get('/subscriptions/{repository}', [SubscriptionController::class, 'compilations'])
+            ->name('subscriptions.compilations');
+        Route::get('/subscriptions/{compilation}/show', [SubscriptionController::class, 'show'])
+            ->name('subscriptions.show');
     });
 });
