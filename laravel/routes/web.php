@@ -7,6 +7,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -72,9 +73,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::get('/repositories/public', [RepositoryController::class, 'public'])
             ->name('repositories.public');
-        Route::post('/repositories/{repository}/{user}/subscribe', [RepositoryController::class, 'subscribe'])
+        Route::post('/repositories/{repository}/{user}/subscribe', [SubscriptionController::class, 'subscribe'])
             ->name('repositories.subscribe');
-        Route::post('/repositories/{repository}/{user}/unsubscribe', [RepositoryController::class, 'unsubscribe'])
+        Route::post('/repositories/{repository}/{user}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
             ->name('repositories.unsubscribe');
 
     });
