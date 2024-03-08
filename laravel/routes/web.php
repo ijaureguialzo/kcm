@@ -37,6 +37,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             $user = Auth::user();
             if ($user->hasRole('editor')) {
                 return redirect(route('editor.index'));
+            } else if ($user->hasRole('subscriber')) {
+                return redirect(route('subscriptions.index'));
             }
 
             return view('welcome');
@@ -77,6 +79,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             ->name('repositories.subscribe');
         Route::post('/repositories/{repository}/{user}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
             ->name('repositories.unsubscribe');
+        Route::get('/subscriptions', [SubscriptionController::class, 'index'])
+            ->name('subscriptions.index');
 
     });
 });

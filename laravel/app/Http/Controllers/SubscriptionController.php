@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Repository;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
 class SubscriptionController extends Controller
@@ -22,5 +23,13 @@ class SubscriptionController extends Controller
         $user->subscribed_repositories()->detach($repository->id);
 
         return back();
+    }
+
+    public function index()
+    {
+        $user = Auth::user();
+        $repositories = $user->subscribed_repositories()->get();
+
+        return view('subscriptions.index', compact(['repositories', 'user']));
     }
 }

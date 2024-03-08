@@ -4,8 +4,11 @@
 ])
 @include('layouts.sidebar.nav-item', [
     'route' => route('home'),
-    'text' => __('Desktop'),
-    'icon' => 'bi-house',
+    'text' => __('My subscriptions'),
+    'icon' => 'bi-bookmark-check',
+])
+@include('layouts.sidebar.nav-title', [
+    'text' => __('Explore'),
 ])
 @can('repository-list')
     @include('layouts.sidebar.nav-item', [
