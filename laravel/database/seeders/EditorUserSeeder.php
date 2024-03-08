@@ -29,6 +29,18 @@ class EditorUserSeeder extends Seeder
         ]);
 
         Feed::create([
+            'title' => 'El Correo',
+            'url' => 'https://www.elcorreo.com/rss/2.0/portada/',
+            'user_id' => $user->id,
+        ]);
+
+        Feed::create([
+            'title' => 'BBC News',
+            'url' => 'http://feeds.bbci.co.uk/news/rss.xml',
+            'user_id' => $user->id,
+        ]);
+
+        Feed::create([
             'title' => 'Tecnalia',
             'url' => 'https://cms.tecnalia.com/feed/?post_type=news&lang=es',
             'user_id' => $user->id,

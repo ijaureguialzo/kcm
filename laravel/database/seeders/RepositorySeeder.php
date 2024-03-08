@@ -23,7 +23,7 @@ class RepositorySeeder extends Seeder
 
         $repository = Repository::create([
             'title' => 'Tecnología',
-            'description' => 'Repositorio con noticias sobre el mundo tecnológico en general.',
+            'description' => 'Noticias sobre el mundo tecnológico en general.',
             'public' => false,
             'user_id' => $editor->id,
         ]);
@@ -33,12 +33,13 @@ class RepositorySeeder extends Seeder
 
         Compilation::create([
             'title' => 'Newsletter #1',
+            'published' => now()->subWeeks(2),
             'repository_id' => $repository->id,
         ]);
 
         Compilation::create([
             'title' => 'Newsletter #2',
-            'published' => now(),
+            'published' => now()->subWeek(),
             'repository_id' => $repository->id,
         ]);
 
@@ -49,7 +50,7 @@ class RepositorySeeder extends Seeder
 
         $repository = Repository::create([
             'title' => 'Ciberseguridad',
-            'description' => 'Repositorio con noticias sobre ciberseguridad.',
+            'description' => 'Novedades sobre ciberseguridad.',
             'public' => true,
             'user_id' => $editor->id,
         ]);
@@ -63,7 +64,7 @@ class RepositorySeeder extends Seeder
 
         $repository = Repository::create([
             'title' => 'Programación',
-            'description' => 'Repositorio con noticias sobre desarrollo de software.',
+            'description' => 'Últimas tendencias en desarrollo de software.',
             'public' => true,
             'user_id' => $editor->id,
         ]);
