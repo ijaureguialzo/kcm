@@ -35,7 +35,9 @@
                     <td>{{ $compilation->repository->title }}</td>
                     <td>{{ $compilation->title }}</td>
                     <td>{{ $compilation->posts->count() }}</td>
-                    <td>{{ $compilation->published ?: __('No') }}</td>
+                    <td>
+                        @include('compilations.fecha_publicacion')
+                    </td>
                     <td>
                         <div class="d-flex">
                             @empty($compilation->published)

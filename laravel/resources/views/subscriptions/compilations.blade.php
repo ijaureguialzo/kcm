@@ -41,7 +41,9 @@
                 <tr>
                     <td>{{ $compilation->title }}</td>
                     <td>{{ $compilation->posts->count() }}</td>
-                    <td>{{ $compilation->published ?: __('No') }}</td>
+                    <td>
+                        @include('compilations.fecha_publicacion')
+                    </td>
                     <td>
                         <div class="d-flex">
                             <a href="{{ route('subscriptions.show', $compilation->id) }}"
