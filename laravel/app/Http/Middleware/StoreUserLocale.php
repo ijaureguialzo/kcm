@@ -29,8 +29,7 @@ class StoreUserLocale
                     'user_id' => $user->id,
                 ]);
             } else if ($user->profile->locale != $locale) {
-                $user->profile->locale = $locale;
-                $user->profile->save();
+                $user->profile->update(['locale' => $locale]);
             }
         }
 

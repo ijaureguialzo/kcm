@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class EditorController extends Controller
 {
@@ -36,8 +37,21 @@ class EditorController extends Controller
 
     public function mark_item_read(Item $item)
     {
-        $item->read = true;
-        $item->save();
+        $item->update(['read' => true]);
+
+        return back();
+    }
+
+    public function mark_all_item_read(Request $request)
+    {
+        $item_ids = $request->input('item_ids');
+        $item_ids = Str::replaceStart('[', '', $item_ids);
+        $item_ids = Str::replaceEnd(']', '', $item_ids);
+        $item_ids = explode(',', $item_ids);
+
+        $items = Item::whereIn('id', $item_ids);
+
+        $items->update(['read' => true]);
 
         return back();
     }
@@ -57,8 +71,7 @@ class EditorController extends Controller
                 'compilation_id' => $compilation->id,
             ]);
 
-            $item->read = true;
-            $item->save();
+            $item->update(['read' => true]);
         }
 
         return back();

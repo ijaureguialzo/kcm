@@ -106,8 +106,7 @@ class CompilationController extends Controller
 
     public function publish(Compilation $compilation)
     {
-        $compilation->published = now();
-        $compilation->save();
+        $compilation->update(['published' => now()]);
 
         $this->remove_from_session('selected_compilations', $compilation->id);
 
