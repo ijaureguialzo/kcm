@@ -64,8 +64,7 @@ class UpdateFeeds extends Command
                     }
                 }
 
-                $feed->last_refreshed = now();
-                $feed->save();
+                $feed->update(['last_refreshed' => now()]);
             } else {
                 Log::debug("No han pasado $intervalo minutos", [
                     'feed' => $feed->id,
