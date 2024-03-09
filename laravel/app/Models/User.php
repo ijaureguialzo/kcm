@@ -78,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasLocalePreferen
 
     public function preferredLocale(): string
     {
-        return $this->profile->locale ?: config('app.locale');
+        return $this->profile?->locale ?: config('app.fallback_locale');
     }
 }
 
