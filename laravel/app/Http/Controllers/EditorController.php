@@ -37,15 +37,14 @@ class EditorController extends Controller
 
     public function mark_item_read(Item $item)
     {
-        $item->read = true;
-        $item->save();
+        $item->update(['read' => true]);
 
         return back();
     }
 
     public function mark_all_item_read(Request $request)
     {
-        $item_ids = $request->get('item_ids');
+        $item_ids = $request->input('item_ids');
         $item_ids = Str::replaceStart('[', '', $item_ids);
         $item_ids = Str::replaceEnd(']', '', $item_ids);
         $item_ids = explode(',', $item_ids);
@@ -72,8 +71,7 @@ class EditorController extends Controller
                 'compilation_id' => $compilation->id,
             ]);
 
-            $item->read = true;
-            $item->save();
+            $item->update(['read' => true]);
         }
 
         return back();

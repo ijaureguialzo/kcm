@@ -57,8 +57,7 @@ class RoleController extends Controller
             'name' => 'required',
         ]);
 
-        $role->name = $request->input('name');
-        $role->save();
+        $role->update(['name' => $request->input('name')]);
 
         $role->syncPermissions($request->input('permissions'));
 
