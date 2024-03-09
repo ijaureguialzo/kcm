@@ -114,7 +114,7 @@ class CompilationController extends Controller
         $subscribers = $compilation->repository->subscribers;
 
         foreach ($subscribers as $recipient) {
-            Mail::to($recipient->email)->queue(new CompilationPublished($compilation));
+            Mail::to($recipient)->queue(new CompilationPublished($compilation));
         }
 
         return back();
