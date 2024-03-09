@@ -44,16 +44,6 @@
                         </td>
                         <td>
                             <div class="d-flex">
-                                <form action="{{ route('editor.mark_item_read', [$item->id]) }}"
-                                      method="POST">
-                                    @csrf
-                                    <button title="{{ __('Mark as read') }}"
-                                            name="mark-read"
-                                            type="submit"
-                                            class="btn btn-sm btn-secondary me-2">
-                                        <i class="bi bi-check2"></i>
-                                    </button>
-                                </form>
                                 @session('selected_compilations')
                                 @if(count($value) > 0)
                                     <form action="{{ route('editor.compile_post', [$item->id]) }}"
@@ -68,6 +58,16 @@
                                     </form>
                                 @endif
                                 @endsession
+                                <form action="{{ route('editor.mark_item_read', [$item->id]) }}"
+                                      method="POST">
+                                    @csrf
+                                    <button title="{{ __('Mark as read') }}"
+                                            name="mark-read"
+                                            type="submit"
+                                            class="btn btn-sm btn-secondary me-2">
+                                        <i class="bi bi-check2"></i>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>
