@@ -23,6 +23,7 @@
                 <th>#</th>
                 <th>{{ __('Title') }}</th>
                 <th>{{ __('URL') }}</th>
+                <th>{{ __('Refreshed') }}</th>
                 <th>{{ __('Actions') }}</th>
             </tr>
             </thead>
@@ -32,6 +33,9 @@
                     <td>{{ $feed->id }}</td>
                     <td>{{ $feed->title }}</td>
                     <td>{{ $feed->url }}</td>
+                    <td>
+                        @include('feeds.fecha_actualizacion')
+                    </td>
                     <td>
                         <div class="d-flex">
                             @can('feed-edit')
