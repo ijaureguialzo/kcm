@@ -1,11 +1,6 @@
 @hasrole('admin')
 @include('layouts.sidebar.nav-title', [
-    'text' => __('Administrator'),
-])
-@include('layouts.sidebar.nav-item', [
-    'route' => route('home'),
-    'text' => __('Home'),
-    'icon' => 'bi-house',
+    'text' => __('User management'),
 ])
 @can('user-list')
     @include('layouts.sidebar.nav-item', [

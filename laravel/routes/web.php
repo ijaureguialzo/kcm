@@ -35,7 +35,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::get('/', function () {
             $user = Auth::user();
-            if ($user->hasRole('editor')) {
+            if ($user->hasRole('admin')) {
+                return redirect(route('users.index'));
+            } else if ($user->hasRole('editor')) {
                 return redirect(route('editor.index'));
             } else if ($user->hasRole('subscriber')) {
                 return redirect(route('subscriptions.index'));
