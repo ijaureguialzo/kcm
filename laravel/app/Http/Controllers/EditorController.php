@@ -24,7 +24,7 @@ class EditorController extends Controller
         }
 
         if ($current_feed != null) {
-            $items = $current_feed->items()->unread()->paginate(10);
+            $items = $current_feed->items()->unread()->paginate(config('kcm.feeds_pagination'));
             $items_total = $current_feed->items()->unread()->count();
         } else {
             $items = [];

@@ -23,7 +23,7 @@ class CompilationController extends Controller
 
     public function index()
     {
-        $compilations = Auth::user()->compilations()->paginate(10);
+        $compilations = Auth::user()->compilations()->paginate(config('kcm.default_pagination'));
 
         return view('compilations.index', compact('compilations'));
     }

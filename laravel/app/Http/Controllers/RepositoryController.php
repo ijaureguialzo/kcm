@@ -23,7 +23,7 @@ class RepositoryController extends Controller
 
     public function index()
     {
-        $repositories = Auth::user()->owned_repositories()->paginate(10);
+        $repositories = Auth::user()->owned_repositories()->paginate(config('kcm.default_pagination'));
 
         return view('repositories.index', compact('repositories'));
     }
@@ -82,7 +82,7 @@ class RepositoryController extends Controller
 
     public function public()
     {
-        $repositories = Repository::where('public', true)->paginate(10);
+        $repositories = Repository::where('public', true)->paginate(config('kcm.default_pagination'));
         $user = Auth::user();
         $subscriptions = $user->subscribed_repositories()->get();
 

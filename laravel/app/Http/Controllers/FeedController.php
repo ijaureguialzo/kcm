@@ -18,7 +18,7 @@ class FeedController extends Controller
 
     public function index()
     {
-        $feeds = Auth::user()->feeds()->paginate(10);
+        $feeds = Auth::user()->feeds()->paginate(config('kcm.default_pagination'));
 
         return view('feeds.index', compact('feeds'));
     }
