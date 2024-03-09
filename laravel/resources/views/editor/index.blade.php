@@ -75,7 +75,7 @@
                 </tbody>
                 <tfoot class="table-group-divider">
                 <tr>
-                    <th colspan="5" class="border-0">{{ __('Total') }}: {{ $items->count() }}</th>
+                    <th colspan="5" class="border-0">{{ __('Total') }}: {{ $items_total }}</th>
                 </tr>
                 </tfoot>
             </table>

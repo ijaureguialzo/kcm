@@ -25,11 +25,13 @@ class EditorController extends Controller
 
         if ($current_feed != null) {
             $items = $current_feed->items()->unread()->paginate(10);
+            $items_total = $current_feed->items()->unread()->count();
         } else {
             $items = [];
+            $items_total = 0;
         }
 
-        return view('editor.index', compact(['feeds', 'current_feed', 'items']));
+        return view('editor.index', compact(['feeds', 'current_feed', 'items', 'items_total']));
     }
 
     public function mark_item_read(Item $item)
