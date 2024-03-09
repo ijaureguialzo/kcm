@@ -75,10 +75,23 @@
                 </tbody>
                 <tfoot class="table-group-divider">
                 <tr>
-                    <th colspan="5" class="border-0">{{ __('Total') }}: {{ $items_total }}</th>
+                    <th class="border-0">{{ __('Total') }}: {{ $items_total }}</th>
                 </tr>
                 </tfoot>
             </table>
+        </div>
+
+        <div class="text-center">
+            <form action="{{ route('editor.mark_all_item_read') }}"
+                  method="POST">
+                @csrf
+                <input type="hidden" name="item_ids" value="{{ $items->pluck('id') }}"/>
+                <button name="mark-all-read"
+                        type="submit"
+                        class="btn btn-secondary mb-5">
+                    <i class="bi bi-check2-all"></i><span class="ms-2">{{ __('Mark all as read') }}</span>
+                </button>
+            </form>
         </div>
 
         <div class="d-flex justify-content-center">

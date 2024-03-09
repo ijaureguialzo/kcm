@@ -68,6 +68,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::post('/editor/{item}/mark_item_read', [EditorController::class, 'mark_item_read'])
             ->name('editor.mark_item_read');
+        Route::post('/editor/mark_all_item_read', [EditorController::class, 'mark_all_item_read'])
+            ->name('editor.mark_all_item_read');
         Route::post('/editor/{item}/compile_post', [EditorController::class, 'compile_post'])
             ->name('editor.compile_post');
         Route::post('/editor/select_feed', [EditorController::class, 'select_feed'])
