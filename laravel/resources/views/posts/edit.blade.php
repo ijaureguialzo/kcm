@@ -64,7 +64,9 @@
     </form>
 
     <script type="module">
-        $('#description').trumbowyg();
+        $('#description').trumbowyg({
+            lang: '{{ app()->getLocale() }}'
+        });
     </script>
 @endsection
 
