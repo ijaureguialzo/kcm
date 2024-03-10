@@ -59,3 +59,16 @@ Código fuente de la aplicación.
 - [Cloner](https://github.com/BKWLD/cloner)
 - [Laravel Lang](https://laravel-lang.com/installation.html)
 - [Laravel-permission](https://spatie.be/docs/laravel-permission/v6/introduction)
+
+## Referencias
+
+- [Trumbowyg](https://alex-d.github.io/Trumbowyg/)
+- [How to use jQuery with Laravel and Vite](https://devdojo.com/thinkverse/how-to-use-jquery-with-laravel-and-vite)
+- [vite-plugin-static-copy](https://github.com/sapphi-red/vite-plugin-static-copy)
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
