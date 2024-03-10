@@ -34,8 +34,9 @@
         <div class="row mb-3">
             <label class="col-2 form-label" for="description">{{ __('Description') }}</label>
             <div class="col-10">
-                <input class="form-control" type="text" id="description" name="description" placeholder=""
-                       value="{{ old('description') ?: $post->description }}"/>
+                <textarea class="form-control" rows="3" style="height:200px;" id="description" name="description">
+                    {{ old('description') ?: $post->description }}
+                </textarea>
                 <span class="text-danger">{{ $errors->first('description') }}</span>
             </div>
         </div>
@@ -62,4 +63,11 @@
         </div>
     </form>
 
+    <script type="module">
+        $('#description').trumbowyg();
+    </script>
+@endsection
+
+@section('trumbowyg')
+    @include('partials.trumbowyg')
 @endsection
