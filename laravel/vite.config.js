@@ -14,7 +14,7 @@ export default defineConfig({
         viteStaticCopy({
             targets: [
                 {
-                    src: 'node_modules/trumbowyg/dist',
+                    src: 'node_modules/trumbowyg/dist/*',
                     dest: 'trumbowyg'
                 }
             ]
