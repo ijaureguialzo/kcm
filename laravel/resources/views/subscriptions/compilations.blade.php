@@ -31,42 +31,45 @@
     @endisset
 
     <h2>{{ __('Previous compilations') }}</h2>
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-            <tr class="table-dark">
-                <th>{{ __('Title') }}</th>
-                <th>{{ __('Posts') }}</th>
-                <th>{{ __('Published') }}</th>
-                <th>{{ __('Actions') }}</th>
-            </tr>
-            </thead>
-            <tbody class="align-middle">
-            @foreach ($compilations as $key => $compilation)
-                <tr>
-                    <td>{{ $compilation->title }}</td>
-                    <td>{{ $compilation->posts->count() }}</td>
-                    <td>
-                        @include('compilations.fecha_publicacion')
-                    </td>
-                    <td>
-                        <div class="d-flex">
-                            <a href="{{ route('subscriptions.show', $compilation->id) }}"
-                               class="btn btn-sm btn-secondary" role="button">
-                                <i class="bi bi-eye"></i><span class="ms-2">{{ __('View compilation') }}</span>
-                            </a>
-                        </div>
-                    </td>
+    @if(count($compilations) > 0)
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr class="table-dark">
+                    <th>{{ __('Title') }}</th>
+                    <th>{{ __('Posts') }}</th>
+                    <th>{{ __('Published') }}</th>
+                    <th>{{ __('Actions') }}</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody class="align-middle">
+                @foreach ($compilations as $key => $compilation)
+                    <tr>
+                        <td>{{ $compilation->title }}</td>
+                        <td>{{ $compilation->posts->count() }}</td>
+                        <td>
+                            @include('compilations.fecha_publicacion')
+                        </td>
+                        <td>
+                            <div class="d-flex">
+                                <a href="{{ route('subscriptions.show', $compilation->id) }}"
+                                   class="btn btn-sm btn-secondary" role="button">
+                                    <i class="bi bi-eye"></i><span class="ms-2">{{ __('View compilation') }}</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
 
-    <div class="d-flex justify-content-center">
-        {!! $compilations->links() !!}
-    </div>
-
+        <div class="d-flex justify-content-center">
+            {!! $compilations->links() !!}
+        </div>
+    @else
+        <p>{{ __('There are no previous compilations available.') }}</p>
+    @endif
     <div>
         <a href="{{ route('subscriptions.index') }}"
            class="btn btn-sm btn-secondary" role="button">
