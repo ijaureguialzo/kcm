@@ -22,7 +22,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::paginate(10);
-        return view('users.index', compact('users'));
+        $num_admins = User::role('admin')->count();
+
+        return view('users.index', compact(['users', 'num_admins']));
     }
 
     public function create()

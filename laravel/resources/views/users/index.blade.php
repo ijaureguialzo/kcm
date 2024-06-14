@@ -50,16 +50,18 @@
                                 </a>
                             @endcan
                             @can('user-delete')
-                                <form action="{{ route('users.destroy', [$user->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button title="{{ __('Delete') }}"
-                                            name="delete"
-                                            type="submit" onclick="return confirm('{{ __('Are you sure?') }}')"
-                                            class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
+                                @if(Auth::user()->id != $user->id || $user->hasRole('admin') && $num_admins >= 2 || !$user->hasRole('admin'))
+                                    <form action="{{ route('users.destroy', [$user->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button title="{{ __('Delete') }}"
+                                                name="delete"
+                                                type="submit" onclick="return confirm('{{ __('Are you sure?') }}')"
+                                                class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             @endcan
                         </div>
                     </td>
