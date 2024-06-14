@@ -4,34 +4,41 @@
 
     @include('partials.titular', ['titular' => __('My posts'), 'subtitulo' => ''])
 
-    @can('post-create')
-        <div class="my-3">
-            <a class="btn btn-primary" href="{{ route('posts.create') }}">{{ __('New post') }}</a>
-        </div>
-    @endcan
+    @isset($current_compilation)
+        <form action="{{ route('editor.select_compilation') }}"
+              method="POST">
+            <div class="mb-3 d-flex ">
+                @csrf
+                <label class="col-form-label" for="compilation_id">{{ __('Compilation') }}</label>
+                <select class="form-select mx-3" id="compilation_id" name="compilation_id">
+                    @foreach($compilations as $compilation)
+                        <option {{ $compilation->id == $current_compilation->id ? 'selected' : '' }}
+                                value="{{ $compilation->id }}">
+                            {{ $compilation->title }}
+                        </option>
+                    @endforeach
+                </select>
+                <button name="select-compilation"
+                        type="submit"
+                        class="btn btn-primary">
+                    {{ __('Select') }}
+                </button>
+            </div>
+        </form>
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <span>{{ $message }}</span>
-        </div>
-    @endif
-
-    @foreach ($compilations as $compilation)
-        <h2 class="fs-4">{{ $compilation->repository->title }} - {{ $compilation->title }}</h2>
+        <h2>{{ $current_compilation->repository->title }} - {{ $current_compilation->title }}</h2>
 
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                 <tr class="table-dark">
-                    <th>#</th>
                     <th>{{ __('Post') }}</th>
                     <th>{{ __('Actions') }}</th>
                 </tr>
                 </thead>
-                <tbody class="align-middle">
-                @foreach ($compilation->posts as $post)
+                <tbody class="align-middle table-group-divider">
+                @foreach ($current_compilation->posts as $post)
                     <tr>
-                        <td>{{ $post->id }}</td>
                         <td>
                             @include('posts.summary', ['data' => $post])
                         </td>
@@ -61,17 +68,15 @@
                     </tr>
                 @endforeach
                 </tbody>
-                <tfoot>
+                <tfoot class="table-group-divider">
                 <tr>
-                    <th colspan="5" class="border-0">{{ __('Total') }}: {{ $compilation->posts->count() }}</th>
+                    <th colspan="5" class="border-0">{{ __('Total') }}: {{ $current_compilation->posts->count() }}</th>
                 </tr>
                 </tfoot>
             </table>
         </div>
-    @endforeach
-
-    <div class="d-flex justify-content-center">
-        {!! $compilations->links() !!}
-    </div>
+    @else
+        <p>{{ __('There are no compilations available.') }}</p>
+    @endisset
 
 @endsection

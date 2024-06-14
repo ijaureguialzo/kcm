@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compilation;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,17 @@ class PostController extends Controller
 
     public function index()
     {
-        $compilations = Auth::user()->compilations()->paginate(config('kcm.default_pagination'));
+        $compilations = Auth::user()->compilations()->get();
 
-        return view('posts.index', compact('compilations'));
+        $seleccionada = session('selected_compilation');
+
+        if (!empty($seleccionada)) {
+            $current_compilation = Compilation::find($seleccionada);
+        } else {
+            $current_compilation = Compilation::first();
+        }
+
+        return view('posts.index', compact(['compilations', 'current_compilation']));
     }
 
     public function create()

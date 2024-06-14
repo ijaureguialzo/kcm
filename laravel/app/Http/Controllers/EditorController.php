@@ -87,4 +87,15 @@ class EditorController extends Controller
 
         return back();
     }
+
+    public function select_compilation()
+    {
+        $compilation_id = request('compilation_id');
+
+        $compilation = Compilation::findOrFail($compilation_id);
+
+        session()->put('selected_compilation', $compilation->id);
+
+        return back();
+    }
 }

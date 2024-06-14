@@ -76,6 +76,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             ->name('editor.compile_post');
         Route::post('/editor/select_feed', [EditorController::class, 'select_feed'])
             ->name('editor.select_feed');
+        Route::post('/editor/select_compilation', [EditorController::class, 'select_compilation'])
+            ->name('editor.select_compilation');
 
         Route::get('/repositories/public', [RepositoryController::class, 'public'])
             ->name('repositories.public');
