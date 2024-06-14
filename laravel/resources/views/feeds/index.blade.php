@@ -20,17 +20,15 @@
         <table class="table table-hover">
             <thead>
             <tr class="table-dark">
-                <th>#</th>
                 <th>{{ __('Title') }}</th>
                 <th>{{ __('URL') }}</th>
                 <th>{{ __('Refreshed') }}</th>
                 <th>{{ __('Actions') }}</th>
             </tr>
             </thead>
-            <tbody class="align-middle">
+            <tbody class="align-middle table-group-divider">
             @foreach ($feeds as $key => $feed)
                 <tr>
-                    <td>{{ $feed->id }}</td>
                     <td>{{ $feed->title }}</td>
                     <td>{{ $feed->url }}</td>
                     <td>
@@ -62,7 +60,7 @@
                 </tr>
             @endforeach
             </tbody>
-            <tfoot>
+            <tfoot class="table-group-divider">
             <tr>
                 <th colspan="5" class="border-0">{{ __('Total') }}: {{ $feeds->count() }}</th>
             </tr>

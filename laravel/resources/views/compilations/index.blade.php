@@ -20,7 +20,6 @@
         <table class="table table-hover">
             <thead>
             <tr class="table-dark">
-                <th>#</th>
                 <th>{{ __('Repository') }}</th>
                 <th>{{ __('Title') }}</th>
                 <th>{{ __('Posts') }}</th>
@@ -28,10 +27,9 @@
                 <th>{{ __('Actions') }}</th>
             </tr>
             </thead>
-            <tbody class="align-middle">
+            <tbody class="align-middle table-group-divider">
             @foreach ($compilations as $key => $compilation)
                 <tr>
-                    <td>{{ $compilation->id }}</td>
                     <td>{{ $compilation->repository->title }}</td>
                     <td>{{ $compilation->title }}</td>
                     <td>{{ $compilation->posts->count() }}</td>
@@ -88,7 +86,7 @@
                 </tr>
             @endforeach
             </tbody>
-            <tfoot>
+            <tfoot class="table-group-divider">
             <tr>
                 <th colspan="5" class="border-0">{{ __('Total') }}: {{ $compilations->count() }}</th>
             </tr>

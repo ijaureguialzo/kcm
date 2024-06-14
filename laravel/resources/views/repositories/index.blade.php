@@ -20,7 +20,6 @@
         <table class="table table-hover">
             <thead>
             <tr class="table-dark">
-                <th>#</th>
                 <th>{{ __('Title') }}</th>
                 <th>{{ __('Description') }}</th>
                 <th>{{ __('Subscribers') }}</th>
@@ -28,10 +27,9 @@
                 <th>{{ __('Actions') }}</th>
             </tr>
             </thead>
-            <tbody class="align-middle">
+            <tbody class="align-middle table-group-divider">
             @foreach ($repositories as $key => $repository)
                 <tr>
-                    <td>{{ $repository->id }}</td>
                     <td>{{ $repository->title }}</td>
                     <td>{{ $repository->description }}</td>
                     <td>{{ $repository->subscribers->count() }}</td>
@@ -62,7 +60,7 @@
                 </tr>
             @endforeach
             </tbody>
-            <tfoot>
+            <tfoot class="table-group-divider">
             <tr>
                 <th colspan="5" class="border-0">{{ __('Total') }}: {{ $repositories->count() }}</th>
             </tr>
