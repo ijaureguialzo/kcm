@@ -27,7 +27,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Auth::routes([
         'reset' => config('auth.password_reset_enabled'),
-        'verify' => config('auth.email_verification_enabled'),
+        'verify' => config('auth.email_verification_enabled') ? 'yes' : 'no',
     ]);
 
     $auth_middlewares = config('auth.email_verification_enabled') ? ['auth', 'verified'] : ['auth'];
