@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compilation;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,17 @@ class PostController extends Controller
 
     public function index()
     {
-        $compilations = Auth::user()->compilations()->paginate(config('kcm.default_pagination'));
+        $compilations = Auth::user()->compilations()->get();
 
-        return view('posts.index', compact('compilations'));
+        $seleccionada = session('selected_compilation');
+
+        if (!empty($seleccionada)) {
+            $current_compilation = Compilation::find($seleccionada);
+        } else {
+            $current_compilation = Compilation::first();
+        }
+
+        return view('posts.index', compact(['compilations', 'current_compilation']));
     }
 
     public function create()
@@ -36,10 +45,13 @@ class PostController extends Controller
             'title' => 'required',
         ]);
 
+        $pattern_all = "/<[^\/>]*>([\s]?)*<\/[^>]*>/";
+        $pattern_p = "/<p[^>]*><\\/p[^>]*>/";
+
         Post::create([
             'title' => request('title'),
-            'description' => request('description'),
-            'content' => request('content'),
+            'description' => preg_replace($pattern_all, '', request('description')),
+            'content' => preg_replace($pattern_p, '', request('content')),
             'url' => request('url'),
             'compilation_id' => request('compilation_id'),
         ]);
@@ -60,10 +72,13 @@ class PostController extends Controller
             'title' => 'required',
         ]);
 
+        $pattern_all = "/<[^\/>]*>([\s]?)*<\/[^>]*>/";
+        $pattern_p = "/<p[^>]*><\\/p[^>]*>/";
+
         $post->update([
             'title' => request('title'),
-            'description' => request('description'),
-            'content' => request('content'),
+            'description' => preg_replace($pattern_all, '', request('description')),
+            'content' => preg_replace($pattern_p, '', request('content')),
             'url' => request('url'),
             'compilation_id' => request('compilation_id'),
         ]);

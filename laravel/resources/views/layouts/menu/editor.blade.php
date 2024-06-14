@@ -7,6 +7,13 @@
     'text' => __('Desktop'),
     'icon' => 'bi-house',
 ])
+@can('post-list')
+    @include('layouts.sidebar.nav-item', [
+        'route' => route('posts.index'),
+        'text' => __('My posts'),
+        'icon' => 'bi-file-post',
+    ])
+@endcan
 @include('layouts.sidebar.nav-title', [
     'text' => __('Feeds'),
 ])
@@ -32,13 +39,6 @@
         'route' => route('compilations.index'),
         'text' => __('My compilations'),
         'icon' => 'bi-collection',
-    ])
-@endcan
-@can('post-list')
-    @include('layouts.sidebar.nav-item', [
-        'route' => route('posts.index'),
-        'text' => __('My posts'),
-        'icon' => 'bi-file-post',
     ])
 @endcan
 @endhasrole

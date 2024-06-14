@@ -34,17 +34,18 @@
         <div class="row mb-3">
             <label class="col-2 form-label" for="description">{{ __('Description') }}</label>
             <div class="col-10">
-                <input class="form-control" type="text" id="description" name="description" placeholder=""
-                       value="{{ old('description') ?: $post->description }}"/>
+                <textarea class="form-control" rows="3" style="height:200px;" id="description" name="description">
+                    {{ old('description') ?: $post->description }}
+                </textarea>
                 <span class="text-danger">{{ $errors->first('description') }}</span>
             </div>
         </div>
         <div class="row mb-3">
             <label class="col-2 form-label" for="content">{{ __('Content') }}</label>
             <div class="col-10">
-                <input class="form-control" type="text" id="content" name="content" placeholder=""
-                       value="{{ old('content') ?: $post->content }}"/>
-                <span class="text-danger">{{ $errors->first('content') }}</span>
+                <div class="form-control">
+                    {!! $post->content !!}
+                </div>
             </div>
         </div>
         <div class="row mb-3">
@@ -62,4 +63,13 @@
         </div>
     </form>
 
+    <script type="module">
+        $('#description').trumbowyg({
+            lang: '{{ app()->getLocale() }}'
+        });
+    </script>
+@endsection
+
+@section('trumbowyg')
+    @include('partials.trumbowyg')
 @endsection
