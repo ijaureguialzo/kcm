@@ -43,9 +43,9 @@
         <div class="row mb-3">
             <label class="col-2 form-label" for="content">{{ __('Content') }}</label>
             <div class="col-10">
-                <input class="form-control" type="text" id="content" name="content" placeholder=""
-                       value="{{ old('content') ?: $post->content }}"/>
-                <span class="text-danger">{{ $errors->first('content') }}</span>
+                <div class="form-control">
+                    {!! $post->content !!}
+                </div>
             </div>
         </div>
         <div class="row mb-3">

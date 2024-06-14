@@ -36,10 +36,13 @@ class PostController extends Controller
             'title' => 'required',
         ]);
 
+        $pattern_all = "/<[^\/>]*>([\s]?)*<\/[^>]*>/";
+        $pattern_p = "/<p[^>]*><\\/p[^>]*>/";
+
         Post::create([
             'title' => request('title'),
-            'description' => request('description'),
-            'content' => request('content'),
+            'description' => preg_replace($pattern_all, '', request('description')),
+            'content' => preg_replace($pattern_p, '', request('content')),
             'url' => request('url'),
             'compilation_id' => request('compilation_id'),
         ]);
@@ -60,10 +63,13 @@ class PostController extends Controller
             'title' => 'required',
         ]);
 
+        $pattern_all = "/<[^\/>]*>([\s]?)*<\/[^>]*>/";
+        $pattern_p = "/<p[^>]*><\\/p[^>]*>/";
+
         $post->update([
             'title' => request('title'),
-            'description' => request('description'),
-            'content' => request('content'),
+            'description' => preg_replace($pattern_all, '', request('description')),
+            'content' => preg_replace($pattern_p, '', request('content')),
             'url' => request('url'),
             'compilation_id' => request('compilation_id'),
         ]);

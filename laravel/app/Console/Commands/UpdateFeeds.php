@@ -51,8 +51,8 @@ class UpdateFeeds extends Command
                         try {
                             Item::create([
                                 'title' => Str::of($item->get_title())->stripTags()->limit(255),
-                                'description' => Str::of($item->get_description())->stripTags(),
-                                'content' => Str::of($item->get_content())->stripTags(),
+                                'description' => Str::of($item->get_description())->stripTags('<p>'),
+                                'content' => Str::of($item->get_content())->stripTags('<p><a>'),
                                 'url' => $item->get_link(),
                                 'uid' => $item->get_id(true),
                                 'published' => Carbon::parse($item->get_gmdate('c')),
