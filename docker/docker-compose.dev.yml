@@ -3,11 +3,11 @@ services:
   https-portal:
     environment:
       DOMAINS: >
-        mailcatcher.kcm.test -> http://mailcatcher:1080,
+        mailpit.kcm.test -> http://mailpit:8025,
         phpredisadmin.kcm.test -> http://phpredisadmin:80,
         ${HTTPS_PORTAL_SITES}
     depends_on:
-      - mailcatcher
+      - mailpit
 
   php:
     image: kcm-php-dev
@@ -19,8 +19,8 @@ services:
       - PMA_USER=root
       - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
-  mailcatcher:
-    image: stpaquet/alpinemailcatcher:${MAILCATCHER_VERSION:-latest}
+  mailpit:
+    image: axllent/mailpit:${MAILPIT_VERSION:-latest}
 
   phpredisadmin:
     image: erikdubbelboer/phpredisadmin:${PHPREDISADMIN_VERSION:-latest}

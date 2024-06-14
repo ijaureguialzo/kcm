@@ -38,7 +38,7 @@ _urls-dev: _header
 	@echo --------------------------------------------------------
 	@echo [Sitio web] https://kcm.test
 	@echo [phpMyAdmin] https://phpmyadmin.kcm.test
-	@echo [MailCatcher] https://mailcatcher.kcm.test
+	@echo [Mailpit] https://mailpit.kcm.test
 	@echo [phpRedisAdmin] https://phpredisadmin.kcm.test
 	@echo --------------------------------------------------------
 
