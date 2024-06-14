@@ -34,4 +34,9 @@ class Compilation extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', '<=', now());
+    }
 }

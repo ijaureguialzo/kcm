@@ -35,7 +35,7 @@ class SubscriptionController extends Controller
 
     public function compilations(Repository $repository)
     {
-        $compilations = $repository->compilations()->orderBy('id', 'desc')->paginate(config('kcm.default_pagination'));
+        $compilations = $repository->compilations()->published()->orderBy('id', 'desc')->paginate(config('kcm.default_pagination'));
         $most_recent = $compilations->shift();
 
         return view('subscriptions.compilations', compact(['compilations', 'most_recent']));

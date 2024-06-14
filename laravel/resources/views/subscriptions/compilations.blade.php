@@ -2,28 +2,33 @@
 
 @section('content')
 
-    @include('partials.titular', ['titular' => $most_recent->repository->title, 'subtitulo' => ''])
+    <h2>{{ __('Most recent compilation') }}</h2>
+    @isset($most_recent)
+        @include('partials.titular', ['titular' => $most_recent->repository->title, 'subtitulo' => ''])
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <span>{{ $message }}</span>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <span>{{ $message }}</span>
+            </div>
+        @endif
+
+        <h2>{{ $most_recent->title }}</h2>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody class="align-middle">
+                @foreach ($most_recent->posts as $post)
+                    <tr>
+                        <td>
+                            @include('posts.summary', ['data' => $post])
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
-    @endif
-
-    <h2>{{ $most_recent->title }}</h2>
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <tbody class="align-middle">
-            @foreach ($most_recent->posts as $post)
-                <tr>
-                    <td>
-                        @include('posts.summary', ['data' => $post])
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
+    @else
+        <p>{{ __('There is no compilation available.') }}</p>
+    @endisset
 
     <h2>{{ __('Previous compilations') }}</h2>
     <div class="table-responsive">
