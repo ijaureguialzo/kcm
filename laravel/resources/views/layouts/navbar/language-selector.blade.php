@@ -1,4 +1,4 @@
-<div class="d-sm-flex d-inline-flex">
+<div class="d-sm-flex d-inline-flex ms-2">
     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
         @if(LaravelLocalization::getCurrentLocale() != $localeCode)
             <li class="nav-link px-0 me-2 d-sm-inline-flex">

@@ -16,6 +16,10 @@
     <div class="collapse navbar-collapse mx-3" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto"></ul>
         <ul class="navbar-nav ms-auto">
+            @if(config('auth.registration_enabled'))
+                @include('layouts.navbar.register')
+                @include('layouts.navbar.navbar-separator')
+            @endif
             @include('layouts.navbar.language-selector')
             @include('layouts.navbar.navbar-separator')
             @auth
